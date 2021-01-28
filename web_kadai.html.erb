@@ -26,10 +26,10 @@
       <input type="submit" name="送信" >
     </form>
 
-    <% result = connection.exec("select weight, give_for from crops;") %>
+    <% result = connection.exec("select * from crops WHERE NOT give_for='自家消費';") %>
       <% data2 = [] %>
       <% result.each do |record| %>
-      <%  data2 << "ゴーヤの譲渡先：#{record["give_for"]}" %>
+      <%  data2 << "日付:#{record["date"]}ゴーヤの譲渡先：#{record["give_for"]}" %>
     <% end %>
     <form action="goya2.cgi" method="POST">
        下記のボタンを押すと、譲渡先が自家消費ではないゴーヤの情報ページに飛びます<br><br>
